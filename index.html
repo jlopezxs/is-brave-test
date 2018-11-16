@@ -1,0 +1,24 @@
+<!doctype html>
+  <head>
+    <title>isBraveBrowser</title>
+  </head>
+  <body>
+    <script>
+      function isBraveBrowser() {
+        if (!window.google_onload_fired && navigator.userAgent && !navigator.userAgent.includes('Chrome')) {
+            return false;
+        }
+
+        var iframeElement = document.createElement('iframe');
+        iframeElement.style.display = 'none';
+        document.body.appendChild(iframeElement);
+
+        var isBrave = (iframeElement.contentWindow.google_onload_fired === true);
+
+        iframeElement.parentNode.removeChild(iframeElement);
+
+        return isBrave;
+      }
+    </script>
+  </body>
+</html>
